@@ -1,38 +1,178 @@
-.App {
-  text-align: center;
+:root {
+  --blue: #4facfe;
+  --green-light: #00f2fe;
+  --white: #ffffff;
+  --grey: #e0dddda3;
+  --red: red;
+  --dark-blue: #243b55;
+  --dark-grey: #3a3a3a;
+  --light-grey: #f4f4f4;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--dark-blue);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.todo-app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right, var(--blue), var(--green-light));
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.todo-box {
+  width: 40%;
+  min-height: 500px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.title {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--dark-blue);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.create-box {
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.create-box input {
+  border: 2px solid var(--light-grey);
+  background-color: var(--light-grey);
+  padding: 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  flex-grow: 1;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.create-box input:focus {
+  background-color: var(--white);
+  border: 2px solid var(--blue);
+  outline: none;
+}
+
+.btn-add-task {
+  border: none;
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  background: linear-gradient(to left, var(--blue), var(--green-light));
+  color: var(--white);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-add-task:hover {
+  background: linear-gradient(to left, var(--green-light), var(--blue));
+}
+
+.todo-list {
+  width: 100%;
+  margin-top: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light-grey);
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.todo-item:hover {
+  background-color: var(--white);
+  transform: translateY(-2px);
+}
+
+.todo-name {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.todo-check {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.todo-name span {
+  font-size: 1rem;
+  color: var(--dark-grey);
+  flex-grow: 1;
+  transition: color 0.3s;
+}
+
+.todo-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.todo-actions .icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.edit-icon:hover {
+  color: var(--blue);
+}
+
+.trash-icon:hover {
+  color: var(--red);
+}
+
+.done {
+  text-decoration: line-through;
+  color: var(--grey);
+}
+
+.error {
+  color: var(--red);
+  margin-top: 5px;
+  font-style: italic;
+}
+
+.empty-list {
+  text-align: center;
+  color: var(--blue);
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .todo-box {
+    width: 80%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .create-box {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-add-task {
+    width: 100%;
   }
 }
