@@ -1,11 +1,18 @@
 import React from "react";
+import { STATUS } from "./TodoApp";
 
-export default function Task({ data }) {
+export default function Task({ task, onChangeStatus }) {
   return (
     <div className="todo-item">
       <div className="todo-name">
-        <input type="checkbox" className="todo-check" />
-        <span>{data.name}</span>
+        <input
+          type="checkbox"
+          onChange={(e) => onChangeStatus(e, task.id)}
+          className="todo-check"
+        />
+        <span className={task.status === STATUS.DONE && "done"}>
+          {task.name}
+        </span>
       </div>
       <div className="todo-actions">
         <svg

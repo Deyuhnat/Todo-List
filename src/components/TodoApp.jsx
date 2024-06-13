@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Task from "./Task";
 
-const STATUS = {
+export const STATUS = {
   DONE: 1,
   PENDING: 2,
 };
@@ -19,13 +19,26 @@ export default function TodoApp() {
     setTasks((prevTasks) => [
       ...prevTasks,
       {
-        id: Math.random().toString(),
+        id: Math.ceil(Math.random() * 1000000),
         name: newTask,
         status: STATUS.PENDING,
       },
     ]);
 
     setNewTask("");
+  };
+
+  const handleUpdateStatus = (e, id) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task, index) => {
+        const newStatus = e.target.checked ? STATUS.DONE : STATUS.PENDING;
+
+        if (task.id === id) {
+          task.status = newStatus;
+        }
+        return task;
+      })
+    );
   };
 
   return (
@@ -47,7 +60,11 @@ export default function TodoApp() {
           </div>
           <div className="todo-list">
             {tasks.map((task, index) => (
-              <Task key={index} data={task} />
+              <Task
+                key={index}
+                task={task}
+                onChangeStatus={handleUpdateStatus}
+              />
             ))}
           </div>
         </div>
