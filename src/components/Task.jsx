@@ -1,7 +1,7 @@
 import React from "react";
 import { STATUS } from "./TodoApp";
 
-export default function Task({ task, onChangeStatus }) {
+export default function Task({ task, onChangeStatus, onEdit, onDelete }) {
   return (
     <div className="todo-item">
       <div className="todo-name">
@@ -16,6 +16,7 @@ export default function Task({ task, onChangeStatus }) {
       </div>
       <div className="todo-actions">
         <svg
+          onClick={() => onEdit(task.id)}
           className="icon edit-icon"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
@@ -26,6 +27,7 @@ export default function Task({ task, onChangeStatus }) {
           <path d="M13.243 3.2 7.359 9.081a.5.5 0 0 0-.136.256L6.51 12.9a.5.5 0 0 0 .59.59l3.566-.713a.5.5 0 0 0 .255-.136L16.8 6.757 13.243 3.2Z" />
         </svg>
         <svg
+        onClick={() => onDelete(task.id)}
           className="icon trash-icon"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
